@@ -1,15 +1,8 @@
 # traQ (Project R)
 
-[![GitHub release](https://img.shields.io/github/release/traPtitech/traQ.svg)](https://GitHub.com/traPtitech/traQ/releases/)
-![CI](https://github.com/traPtitech/traQ/workflows/CI/badge.svg)
-![release](https://github.com/traPtitech/traQ/workflows/release/badge.svg)
-[![codecov](https://codecov.io/gh/traPtitech/traQ/branch/master/graph/badge.svg)](https://codecov.io/gh/traPtitech/traQ)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=traPtitech/traQ)](https://dependabot.com)
+## 環境構築
 
-
-## Development environment
-
-### Requirements
+### 必要なソフト
 
 - go 1.13.x
 - git
@@ -17,29 +10,29 @@
 - docker
 - docker-compose
 
-### Setup with docker and docker-compose
+### Dockerを使う
 
-#### First Up (or entirely rebuild)
+####　初回設定
 `make update-frontend && make up`
 
-Now you can access to
+アクセスができるようになってるので、
 + `http://localhost:3000` for traQ
-    + admin user id: `traq`
-    + admin user password: `traq`
-+ `http://localhost:3001` for Adminer
-+ `http://localhost:6060` for traQ pprof web interface
-+ `3002/tcp` for traQ MariaDB
+    + アカウント名: `traq`
+    + パスワード: `traq`
++ `http://localhost:3001` データベース閲覧用システム　traq_adminer_1
++ `http://localhost:6060` for traQ pprof web interface よくわからない
++ `3002/tcp` for traQ MariaDB（3001も同じ
     + username: `root`
     + password: `password`
     + database: `traq`
 
-#### Rebuild traQ
+#### 再構築
 `make up`
 
-#### Update frontend
+####　フロントエンド
 `make update-frontend`
 
-#### Destroy Containers and Volumes
+#### コンテナを初期化
 `make down`
 
 ### Testing
@@ -69,3 +62,24 @@ Test mysql container need to be running by `make up-test-db`.
 Code licensed under [the MIT License](https://github.com/traPtitech/traQ/blob/master/LICENSE).
 
 [twemoji](https://twemoji.twitter.com) (svg files in `/dev/data/twemoji`) by 2018 Twitter, Inc and other contributors is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/). 
+
+## api
+### ログイン、ログアウト
+/login,/logout
+`{
+  "name": "string",
+  "pass": "string"
+}`
+
+メソッド：POST
+
+## ユーザー登録
+/users
+`{
+  "name": "string",
+  "password": "string"
+}`
+重要:パスワードは10文字以上ないとはじかれる
+（traPortalがないのでクライアントを作らんとな）
+メソッド：PUT
+
