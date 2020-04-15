@@ -12,7 +12,7 @@ info:
     url: 'https://github.com/traPtitech/traQ'
 
 servers:
-  - url: https://q.trap.jp/api/1.0
+  - url: http://clappdon.work/api/1.0
     description: production environment
   - url: https://traq-dev.tokyotech.org/api/1.0
     description: staging environment
